@@ -358,8 +358,10 @@ class App {
       });
     }
 
-    // Robust Cross-Browser Fullscreen Toggle
+    // Robust Cross-Browser Fullscreen Toggle & Immersive Mode
     const fullscreenBtn = document.getElementById('btn-fullscreen');
+    const fullscreenExitBtn = document.getElementById('btn-fullscreen-exit');
+
     const updateFullscreenState = () => {
       const isFs = !!(
         document.fullscreenElement ||
@@ -368,6 +370,13 @@ class App {
         document.msFullscreenElement
       );
       this.isFullscreen = isFs;
+
+      if (isFs) {
+        document.body.classList.add('fullscreen-immersive');
+      } else {
+        document.body.classList.remove('fullscreen-immersive');
+      }
+
       if (fullscreenBtn) {
         if (isFs) {
           fullscreenBtn.classList.add('active');
@@ -378,48 +387,54 @@ class App {
           fullscreenBtn.setAttribute('data-tooltip', 'Toggle Fullscreen Mode');
           fullscreenBtn.innerHTML = '<i data-lucide="maximize-2" style="width: 18px; height: 18px;"></i>';
         }
-        this.renderIcons();
+      }
+      this.renderIcons();
+    };
+
+    const toggleFs = async () => {
+      try {
+        const isFs = !!(
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.msFullscreenElement
+        );
+
+        if (!isFs) {
+          const docEl = document.documentElement;
+          if (docEl.requestFullscreen) {
+            await docEl.requestFullscreen();
+          } else if (docEl.webkitRequestFullscreen) {
+            await docEl.webkitRequestFullscreen();
+          } else if (docEl.mozRequestFullScreen) {
+            await docEl.mozRequestFullScreen();
+          } else if (docEl.msRequestFullscreen) {
+            await docEl.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            await document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            await document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            await document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            await document.msExitFullscreen();
+          }
+        }
+      } catch (err) {
+        console.warn('Fullscreen toggle error:', err);
+      } finally {
+        updateFullscreenState();
       }
     };
 
     if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', async () => {
-        try {
-          const isFs = !!(
-            document.fullscreenElement ||
-            document.webkitFullscreenElement ||
-            document.mozFullScreenElement ||
-            document.msFullscreenElement
-          );
+      fullscreenBtn.addEventListener('click', toggleFs);
+    }
 
-          if (!isFs) {
-            const docEl = document.documentElement;
-            if (docEl.requestFullscreen) {
-              await docEl.requestFullscreen();
-            } else if (docEl.webkitRequestFullscreen) {
-              await docEl.webkitRequestFullscreen();
-            } else if (docEl.mozRequestFullScreen) {
-              await docEl.mozRequestFullScreen();
-            } else if (docEl.msRequestFullscreen) {
-              await docEl.msRequestFullscreen();
-            }
-          } else {
-            if (document.exitFullscreen) {
-              await document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-              await document.webkitExitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-              await document.mozCancelFullScreen();
-            } else if (document.msExitFullscreen) {
-              await document.msExitFullscreen();
-            }
-          }
-        } catch (err) {
-          console.warn('Fullscreen toggle error:', err);
-        } finally {
-          updateFullscreenState();
-        }
-      });
+    if (fullscreenExitBtn) {
+      fullscreenExitBtn.addEventListener('click', toggleFs);
     }
 
     document.addEventListener('fullscreenchange', updateFullscreenState);

@@ -2979,3 +2979,95 @@ body.tour-entered .bottom-dock {
     height: 110px;
   }
 }
+
+/* ==========================================================================
+   IMMERSIVE FULLSCREEN MODE (Hides Top Header, Bottom Dock & Side Instruments)
+   ========================================================================== */
+body.fullscreen-immersive .luxury-header,
+:fullscreen .luxury-header,
+:-webkit-full-screen .luxury-header {
+  opacity: 0 !important;
+  transform: translateY(-100%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+body.fullscreen-immersive .bottom-dock,
+:fullscreen .bottom-dock,
+:-webkit-full-screen .bottom-dock {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(120%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+body.fullscreen-immersive .left-tower-nav,
+:fullscreen .left-tower-nav,
+:-webkit-full-screen .left-tower-nav {
+  opacity: 0 !important;
+  transform: translateX(-120%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+body.fullscreen-immersive .radar-floating-instrument,
+:fullscreen .radar-floating-instrument,
+:-webkit-full-screen .radar-floating-instrument {
+  opacity: 0 !important;
+  transform: translateY(-120%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Floating Exit Button in Fullscreen Mode */
+.fullscreen-exit-pill {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  background: rgba(10, 15, 24, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-light);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.75), 0 0 20px rgba(212, 175, 55, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fullscreen-exit-pill:hover {
+  background: var(--gold-gradient);
+  color: #07090e;
+  border-color: var(--gold-primary);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.5);
+  transform: translateY(0) scale(1.05);
+}
+
+body.fullscreen-immersive .fullscreen-exit-pill,
+:fullscreen .fullscreen-exit-pill,
+:-webkit-full-screen .fullscreen-exit-pill {
+  opacity: 0.9;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+body.fullscreen-immersive .fullscreen-exit-pill:hover,
+:fullscreen .fullscreen-exit-pill:hover,
+:-webkit-full-screen .fullscreen-exit-pill:hover {
+  opacity: 1;
+}
