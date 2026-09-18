@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>POLYCRAYONS BAY HORIZON • 360° Luxury Virtual Tour & Masterplan</title>
+  <meta name="description"
+    content="Experience 360° drone panoramas, sky penthouses, interactive masterplan hotspots, and luxury waterfront residences in India." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+
+<body>
+  <!-- Ultra-Luxury Multi-Style Cinematic Loading Screen Showcase -->
+  <div id="loader-overlay" class="luxury-loader-screen style-gates">
+    <!-- Live Luxury Design Switcher Toolbar (Commented out)
+    <div class="loader-style-switcher">
+      <span class="switcher-label">✦ SELECT DESIGN:</span>
+      <button class="style-toggle-btn" data-style="style-monogram">1. Swiss Monogram</button>
+      <button class="style-toggle-btn active" data-style="style-gates">2. Luxury Gates</button>
+      <button class="style-toggle-btn" data-style="style-hud">3. Aerial HUD</button>
+      <button class="style-toggle-btn" data-style="style-cinematic">4. Film Intro</button>
+      <button id="btn-close-loader-preview" class="style-close-btn" title="Enter Virtual Tour">✕ Close</button>
+    </div>
+    -->
+
+    <!-- Luxury Viewport Corner Reticles -->
+    <div class="loader-reticle top-left"></div>
+    <div class="loader-reticle top-right"></div>
+    <div class="loader-reticle bottom-left"></div>
+    <div class="loader-reticle bottom-right"></div>
+
+    <!-- Ambient Background Glow & Stardust -->
+    <div class="loader-ambient-glow"></div>
+    <div class="loader-ambient-stars"></div>
+
+    <!-- ============================================================== -->
+    <!-- STYLE 1: MINIMALIST SWISS LUXURY (Rolex / Bulgari Hotels)     -->
+    <!-- ============================================================== -->
+    <div class="loader-style-section style-monogram-view">
+      <div class="swiss-monogram-wrapper">
+        <svg class="swiss-monogram-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="swissGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="30%" stop-color="#fff0b3" />
+              <stop offset="70%" stop-color="#dfba73" />
+              <stop offset="100%" stop-color="#997528" />
+            </linearGradient>
+          </defs>
+          <!-- Outer Fine Ring -->
+          <circle cx="60" cy="60" r="54" stroke="url(#swissGoldGrad)" stroke-width="1.2" stroke-dasharray="4 3"
+            class="swiss-ring-spin" />
+          <!-- Handcrafted Luxury PBH Monogram Path with Self-Drawing Stroke -->
+          <path
+            d="M42 35V85M42 35H62C70 35 76 41 76 49C76 57 70 63 62 63H42M62 63H68C76 63 82 69 82 74C82 80 76 85 68 85H50"
+            stroke="url(#swissGoldGrad)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"
+            class="monogram-stroke-anim" />
+          <!-- Center Diamond Star -->
+          <polygon points="60,20 62,24 60,28 58,24" fill="#ffffff" filter="drop-shadow(0 0 4px #ffdf7a)" />
+        </svg>
+      </div>
+
+      <div class="loader-brand-wrapper">
+        <div class="loader-pre-title">
+          <span class="gold-line"></span>
+          <span>HAUTE LIVING • PRIVATE RESIDENCES</span>
+          <span class="gold-line"></span>
+        </div>
+        <h1 class="loader-brand-title font-serif">POLYCRAYONS BAY HORIZON</h1>
+        <p class="loader-brand-sub">MUMBAI HARBOR WATERFRONT</p>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- STYLE 2: CINEMATIC ARCHITECTURAL GRAND GATES (Proportionate)  -->
+    <!-- ============================================================== -->
+    <div class="loader-style-section style-gates-view">
+      <!-- Luxury Architectural Backdrop Environment Flanking the Doors -->
+      <div class="gate-architectural-backdrop">
+        <!-- Ambient Wall Geometry Pattern & Cove Lighting -->
+        <div class="gate-wall-pattern"></div>
+        <div class="gate-wall-cove-light"></div>
+        <div class="gate-stardust-particles"></div>
+
+        <!-- Polished Foyer Floor with Perspective Grid & Base Reflection -->
+        <div class="gate-foyer-floor">
+          <div class="foyer-floor-grid"></div>
+          <div class="foyer-floor-reflection"></div>
+        </div>
+      </div>
+
+      <!-- Left Architectural Flank: Grand Sconce & Wing Plinth (Top Layer) -->
+      <div class="gate-flank-column flank-left">
+        <div class="gate-sconce-lamp">
+          <div class="sconce-fixture">
+            <span class="sconce-cap-top"></span>
+            <span class="sconce-glass-tube">
+              <span class="sconce-glow-filament"></span>
+            </span>
+            <span class="sconce-cap-bottom"></span>
+          </div>
+          <div class="sconce-volumetric-cone cone-up"></div>
+          <div class="sconce-volumetric-cone cone-down"></div>
+        </div>
+
+        <div class="gate-flank-pilaster">
+          <div class="pilaster-grooves">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="gate-column-plinth">
+          <div class="plinth-gold-line"></div>
+          <span class="plinth-title font-serif">WEST WING</span>
+          <span class="plinth-subtitle">HARBOR SUITES 01–48</span>
+          <div class="plinth-gold-line"></div>
+        </div>
+      </div>
+
+      <!-- Right Architectural Flank: Grand Sconce & Wing Plinth (Top Layer) -->
+      <div class="gate-flank-column flank-right">
+        <div class="gate-sconce-lamp">
+          <div class="sconce-fixture">
+            <span class="sconce-cap-top"></span>
+            <span class="sconce-glass-tube">
+              <span class="sconce-glow-filament"></span>
+            </span>
+            <span class="sconce-cap-bottom"></span>
+          </div>
+          <div class="sconce-volumetric-cone cone-up"></div>
+          <div class="sconce-volumetric-cone cone-down"></div>
+        </div>
+
+        <div class="gate-flank-pilaster">
+          <div class="pilaster-grooves">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="gate-column-plinth">
+          <div class="plinth-gold-line"></div>
+          <span class="plinth-title font-serif">EAST WING</span>
+          <span class="plinth-subtitle">SKY PENTHOUSES 49–72</span>
+          <div class="plinth-gold-line"></div>
+        </div>
+      </div>
+
+      <!-- Grand Floating Transom Header (Unified Branding) -->
+      <div class="gate-top-header">
+        <div class="gate-header-pill">
+          <span class="gate-dot"></span>
+          <span>PRIVATE RESIDENTIAL ENCLAVE</span>
+          <span class="gate-dot"></span>
+        </div>
+        <h2 class="gate-grand-title font-serif">POLYCRAYONS BAY HORIZON</h2>
+        <p class="gate-grand-sub">SIGNATURE WATERFRONT ESTATES &amp; SKY MANSIONS</p>
+      </div>
+
+      <!-- Imposing Architectural Portal Frame -->
+      <div class="gate-portal-frame">
+        <!-- Archway Pediment / Crown Molding -->
+        <div class="portal-arch-crown">
+          <div class="arch-sunburst-rays">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="arch-gold-frieze">
+            <span class="arch-frieze-diamond"></span>
+            <span class="arch-frieze-title">POLYCRAYONS SANCTUARY</span>
+            <span class="arch-frieze-diamond"></span>
+          </div>
+          <div class="arch-center-gem"></div>
+        </div>
+
+        <!-- Doorway Center Welcome Banner (Revealed after gates open & enlarges by zooming in) -->
+        <div class="gate-welcome-banner" id="gate-welcome-banner">
+          <div class="welcome-crown-star">✦ ✦ ✦</div>
+          <div class="welcome-top-tag">
+            <span class="welcome-gold-line"></span>
+            <span>ESTATE RESIDENCES & SKY PENTHOUSES</span>
+            <span class="welcome-gold-line"></span>
+          </div>
+          <h2 class="welcome-main-title font-serif">Welcome to Polycrayons Bay Horizon</h2>
+          <p class="welcome-sub-title">MUMBAI HARBOR WATERFRONT SANCTUARY</p>
+          <div class="welcome-status-pill">
+            <span class="welcome-live-dot"></span>
+            <span>ENTERING 360° PANORAMIC MASTERPLAN</span>
+          </div>
+        </div>
+
+        <!-- Left Gate Door (The Bay Residences - West Wing) -->
+        <div class="gate-door-wing door-left">
+          <div class="door-hinge top"></div>
+          <div class="door-hinge middle"></div>
+          <div class="door-hinge bottom"></div>
+
+          <div class="door-outer-bevel">
+            <div class="door-inner-bevel">
+              <!-- Top Panel: West Wing Header & Coastal Fan Grill -->
+              <div class="door-panel-top">
+                <div class="door-panel-header-tag">
+                  <span class="panel-dot"></span>
+                  <span>WEST WING • RESIDENCES</span>
+                  <span class="panel-dot"></span>
+                </div>
+                <div class="deco-fan-grill">
+                  <svg viewBox="0 0 160 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 80 Q80 8 150 80" stroke="url(#swissGoldGrad)" stroke-width="1.6" fill="none"/>
+                    <path d="M25 80 Q80 22 135 80" stroke="rgba(212,175,55,0.6)" stroke-width="1.2" fill="none"/>
+                    <path d="M40 80 Q80 38 120 80" stroke="rgba(212,175,55,0.4)" stroke-width="1" fill="none"/>
+                    <line x1="80" y1="80" x2="80" y2="10" stroke="url(#swissGoldGrad)" stroke-width="1.5"/>
+                    <line x1="80" y1="80" x2="35" y2="30" stroke="rgba(212,175,55,0.6)" stroke-width="1.2"/>
+                    <line x1="80" y1="80" x2="125" y2="30" stroke="rgba(212,175,55,0.6)" stroke-width="1.2"/>
+                    <line x1="80" y1="80" x2="15" y2="58" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+                    <line x1="80" y1="80" x2="145" y2="58" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+                    <circle cx="80" cy="10" r="3.5" fill="#ffffff"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Center Panel: Royal Bay Residences Crest Medallion -->
+              <div class="door-panel-center">
+                <div class="grand-crest-medallion">
+                  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <radialGradient id="crestGoldRadialLeft" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#182338" />
+                        <stop offset="65%" stop-color="#0b111c" />
+                        <stop offset="100%" stop-color="#04060a" />
+                      </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="47" stroke="url(#swissGoldGrad)" stroke-width="2" fill="url(#crestGoldRadialLeft)"/>
+                    <circle cx="50" cy="50" r="42" stroke="rgba(212,175,55,0.5)" stroke-width="1.2" stroke-dasharray="3 2"/>
+                    <polygon points="50,11 59,25 76,23 74,40 88,50 74,60 76,77 59,75 50,89 41,75 24,77 26,60 12,50 26,40 24,23 41,25" stroke="url(#swissGoldGrad)" stroke-width="1.4" fill="rgba(212,175,55,0.09)"/>
+                    <polygon points="50,20 70,50 50,80 30,50" stroke="#dfba73" stroke-width="1.6" fill="rgba(9,13,22,0.92)"/>
+                    <path d="M43 35V65M43 35H55C61 35 66 39 66 45C66 51 61 55 55 55H43" stroke="url(#swissGoldGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polygon points="50,14 53,18 50,22 47,18" fill="#ffffff"/>
+                  </svg>
+                </div>
+                <div class="door-brand-block">
+                  <h3 class="medallion-title font-serif">THE BAY RESIDENCES</h3>
+                  <p class="medallion-sub">HARBOR SUITES 01–48</p>
+                </div>
+              </div>
+
+              <!-- Bottom Panel: Architectural Fluted Pilasters & Alpha Plaque -->
+              <div class="door-panel-bottom">
+                <div class="fluted-columns-ribs">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="door-bottom-plaque">
+                  <span>✦ PRIVATE WATERFRONT HAVEN ✦</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heavy Brushed Brass Vertical Handle -->
+          <div class="door-edge-trim edge-left"></div>
+          <div class="door-handle handle-left">
+            <div class="handle-standoff top"></div>
+            <div class="handle-bar">
+              <div class="handle-knurling"></div>
+            </div>
+            <div class="handle-standoff bottom"></div>
+          </div>
+        </div>
+
+        <!-- Right Gate Door (The Sky Penthouses - East Wing) -->
+        <div class="gate-door-wing door-right">
+          <div class="door-hinge top"></div>
+          <div class="door-hinge middle"></div>
+          <div class="door-hinge bottom"></div>
+
+          <div class="door-outer-bevel">
+            <div class="door-inner-bevel">
+              <!-- Top Panel: East Wing Header & Sky Fan Grill -->
+              <div class="door-panel-top">
+                <div class="door-panel-header-tag">
+                  <span class="panel-dot"></span>
+                  <span>EAST WING • PENTHOUSES</span>
+                  <span class="panel-dot"></span>
+                </div>
+                <div class="deco-fan-grill">
+                  <svg viewBox="0 0 160 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 80 Q80 8 150 80" stroke="url(#swissGoldGrad)" stroke-width="1.6" fill="none"/>
+                    <path d="M25 80 Q80 22 135 80" stroke="rgba(212,175,55,0.6)" stroke-width="1.2" fill="none"/>
+                    <path d="M40 80 Q80 38 120 80" stroke="rgba(212,175,55,0.4)" stroke-width="1" fill="none"/>
+                    <line x1="80" y1="80" x2="80" y2="10" stroke="url(#swissGoldGrad)" stroke-width="1.5"/>
+                    <line x1="80" y1="80" x2="35" y2="30" stroke="rgba(212,175,55,0.6)" stroke-width="1.2"/>
+                    <line x1="80" y1="80" x2="125" y2="30" stroke="rgba(212,175,55,0.6)" stroke-width="1.2"/>
+                    <line x1="80" y1="80" x2="15" y2="58" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+                    <line x1="80" y1="80" x2="145" y2="58" stroke="rgba(212,175,55,0.4)" stroke-width="1"/>
+                    <circle cx="80" cy="10" r="3.5" fill="#ffffff"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Center Panel: Royal Sky Penthouses Crest Medallion -->
+              <div class="door-panel-center">
+                <div class="grand-crest-medallion">
+                  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <radialGradient id="crestGoldRadialRight" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#182338" />
+                        <stop offset="65%" stop-color="#0b111c" />
+                        <stop offset="100%" stop-color="#04060a" />
+                      </radialGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="47" stroke="url(#swissGoldGrad)" stroke-width="2" fill="url(#crestGoldRadialRight)"/>
+                    <circle cx="50" cy="50" r="42" stroke="rgba(212,175,55,0.5)" stroke-width="1.2" stroke-dasharray="3 2"/>
+                    <polygon points="50,11 59,25 76,23 74,40 88,50 74,60 76,77 59,75 50,89 41,75 24,77 26,60 12,50 26,40 24,23 41,25" stroke="url(#swissGoldGrad)" stroke-width="1.4" fill="rgba(212,175,55,0.09)"/>
+                    <polygon points="50,20 70,50 50,80 30,50" stroke="#dfba73" stroke-width="1.6" fill="rgba(9,13,22,0.92)"/>
+                    <path d="M40 35V65M40 35H49C54 35 57 38 57 42C57 46 54 49 49 49H40M49 49H51C56 49 60 53 60 57C60 61 56 65 51 65H40M55 46V65M64 35V65M55 54H64" stroke="url(#swissGoldGrad)" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polygon points="50,14 53,18 50,22 47,18" fill="#ffffff"/>
+                  </svg>
+                </div>
+                <div class="door-brand-block">
+                  <h3 class="medallion-title font-serif">THE SKY PENTHOUSES</h3>
+                  <p class="medallion-sub">HORIZON SUITES 49–72</p>
+                </div>
+              </div>
+
+              <!-- Bottom Panel: Architectural Fluted Pilasters & Omega Plaque -->
+              <div class="door-panel-bottom">
+                <div class="fluted-columns-ribs">
+                  <span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="door-bottom-plaque">
+                  <span>✦ PRIVATE SKY SANCTUARY ✦</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Heavy Brushed Brass Vertical Handle -->
+          <div class="door-edge-trim edge-right"></div>
+          <div class="door-handle handle-right">
+            <div class="handle-standoff top"></div>
+            <div class="handle-bar">
+              <div class="handle-knurling"></div>
+            </div>
+            <div class="handle-standoff bottom"></div>
+          </div>
+        </div>
+
+        <!-- Grand Floor Threshold Bar -->
+        <div class="portal-floor-threshold">
+          <div class="threshold-gold-inlay"></div>
+        </div>
+      </div>
+
+      <!-- Luxury Floating Golden Sprinkles & Stardust Embers -->
+      <div class="gate-floating-sprinkles">
+        <span class="sprinkle-particle sp-1"></span>
+        <span class="sprinkle-particle sp-2"></span>
+        <span class="sprinkle-particle sp-3"></span>
+        <span class="sprinkle-particle sp-4"></span>
+        <span class="sprinkle-particle sp-5"></span>
+        <span class="sprinkle-particle sp-6"></span>
+        <span class="sprinkle-particle sp-7"></span>
+        <span class="sprinkle-particle sp-8"></span>
+        <span class="sprinkle-particle sp-9"></span>
+        <span class="sprinkle-particle sp-10"></span>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- STYLE 3: HIGH-TECH 360° AERIAL DRONE HUD                      -->
+    <!-- ============================================================== -->
+    <div class="loader-style-section style-hud-view">
+      <div class="drone-hud-compass-ring">
+        <div class="hud-outer-dial"></div>
+        <div class="hud-target-reticle">
+          <span class="hud-crosshair-h"></span>
+          <span class="hud-crosshair-v"></span>
+          <div class="hud-aperture-core">
+            <span class="hud-8k-badge">8K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-telemetry-grid">
+        <div class="hud-stat-item"><span>LAT:</span><strong>19°04'31"N</strong></div>
+        <div class="hud-stat-item"><span>LONG:</span><strong>72°49'58"E</strong></div>
+        <div class="hud-stat-item"><span>SENSOR:</span><strong>GIGAPIXEL HDR</strong></div>
+        <div class="hud-stat-item"><span>ALTITUDE:</span><strong>85M - 120M</strong></div>
+      </div>
+
+      <div class="loader-brand-wrapper">
+        <h1 class="loader-brand-title font-serif" style="font-size: 24px; letter-spacing: 0.28em;">POLYCRAYONS AERIAL
+          HUD</h1>
+        <p class="loader-brand-sub">CALIBRATING 360° DRONE SPATIAL MATRIX</p>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- STYLE 4: ULTRA-MINIMALIST FILM INTRO (Cinematic Watermark)    -->
+    <!-- ============================================================== -->
+    <div class="loader-style-section style-cinematic-view">
+      <div class="film-giant-watermark font-serif">POLYCRAYONS</div>
+      <div class="loader-brand-wrapper film-foreground">
+        <div class="film-year-tag">EST. 2026 • SIGNATURE SKYLINE</div>
+        <h1 class="loader-brand-title font-serif" style="font-size: 34px; letter-spacing: 0.3em;">BAY HORIZON</h1>
+        <p class="loader-brand-sub" style="font-size: 12px; letter-spacing: 0.24em;">A PRIVATE WATERFRONT SANCTUARY</p>
+      </div>
+    </div>
+
+    <!-- Bottom Accreditation Badge -->
+    <div class="loader-footer-accreditation">
+      <span>MAHARERA REG: P51800098765</span>
+      <span class="dot-sep">•</span>
+      <span>7-STAR LUXURY WATERFRONT TOWERS</span>
+      <span class="dot-sep">•</span>
+      <span>MUMBAI HARBOR</span>
+    </div>
+  </div>
+
+  <!-- 3D Three.js WebGL Viewport Container -->
+  <div id="viewport-container">
+    <div id="hotspot-layer"></div>
+  </div>
+
+  <!-- Luxury Top Header Bar -->
+  <header class="luxury-header">
+    <div class="brand-wrapper">
+      <div class="brand-emblem">
+        <i data-lucide="building" style="width: 22px; height: 22px;"></i>
+      </div>
+      <div class="brand-titles">
+        <h1>POLYCRAYONS BAY HORIZON</h1>
+        <p>Luxury Waterfront Residences • MahaRERA Reg: P51800098765</p>
+      </div>
+    </div>
+
+    <!-- Right Action Bar -->
+    <div class="header-actions">
+      <!-- Loading Styles button commented out
+      <button id="btn-show-loader" class="glass-btn" data-tooltip="Preview & Test All 4 Luxury Loading Screen Styles">
+        <i data-lucide="eye" style="width: 15px; height: 15px; color: var(--gold-light);"></i>
+        <span>Loading Styles</span>
+      </button>
+      -->
+
+      <button id="btn-open-amenities" class="glass-btn" data-tooltip="Explore Lifestyle & Clubhouse Amenities">
+        <i data-lucide="sparkles" style="width: 15px; height: 15px; color: var(--gold-light);"></i>
+        <span>Clubhouse & Amenities</span>
+      </button>
+
+      <button id="btn-open-units" class="glass-btn" data-tooltip="Browse Available Units & RERA Floor Plans">
+        <i data-lucide="sliders-horizontal" style="width: 15px; height: 15px; color: var(--gold-light);"></i>
+        <span>Inventory & Units</span>
+      </button>
+
+      <button id="btn-open-crm" class="glass-btn" data-tooltip="View Live Captured CRM Leads">
+        <i data-lucide="users" style="width: 15px; height: 15px; color: var(--gold-light);"></i>
+        <span>Leads CRM</span>
+        <span id="crm-lead-count-badge"
+          style="background: var(--gold-gradient); color: #07090e; font-size: 10px; font-weight: 800; padding: 1px 7px; border-radius: 999px;">0</span>
+      </button>
+
+      <button id="btn-vip-booking" class="gold-btn">
+        <i data-lucide="phone" style="width: 15px; height: 15px;"></i>
+        <span>Schedule Site Visit</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Left Section: Tower Floor Elevations & Scene Navigator -->
+  <aside class="left-tower-nav">
+    <div class="left-nav-header">
+      <span>
+        <i data-lucide="layers" style="width: 14px; height: 14px;"></i>
+        Tower Elevations & Floors
+      </span>
+      <span style="font-size: 10px; color: var(--text-dim); text-transform: uppercase;">Select Deck</span>
+    </div>
+
+    <!-- Vertical Floor Switcher Options -->
+    <div class="floor-stack">
+      <button class="floor-option-btn scene-btn active" data-index="0">
+        <div>
+          <div class="floor-title">18th – 20th Floor View</div>
+          <div class="floor-sub">Bay & Mangrove Horizon</div>
+        </div>
+        <span class="floor-altitude-tag">85m Elevation</span>
+      </button>
+
+      <button class="floor-option-btn scene-btn" data-index="1">
+        <div>
+          <div class="floor-title">21st & Sky Terrace Penthouse</div>
+          <div class="floor-sub">360° Sky Deck & Rooftop</div>
+        </div>
+        <span class="floor-altitude-tag">120m Elevation</span>
+      </button>
+    </div>
+
+    <!-- Current Scene Information Badge -->
+    <div class="scene-info-badge">
+      <span id="scene-info-tag" class="scene-tag">18th–20th Floor Vista</span>
+      <h2 id="scene-info-title">18th to 20th Floor • Horizon View</h2>
+      <p id="scene-info-desc">
+        Breathtaking 360° vantage from floors 18 to 20 overlooking the serene mangrove wetlands, illuminated city
+        corridors, and the coastal horizon.
+      </p>
+    </div>
+  </aside>
+
+  <!-- Right Side: Ultra-Luxury Chronometer & Horizon Radar Dial (Directly below Schedule Visit) -->
+  <div id="radar-hud-card" class="radar-floating-instrument" data-tooltip="Orientation Radar • Live Horizon Compass">
+    <!-- Minimal Frosted Glass Top Capsule -->
+    <div class="radar-top-capsule">
+      <span class="radar-capsule-icon">
+        <i data-lucide="compass" style="width: 13px; height: 13px;"></i>
+      </span>
+      <span id="radar-live-heading" class="radar-live-heading">45° NE</span>
+      <span class="radar-capsule-divider">•</span>
+      <span id="scene-altitude-badge" class="radar-altitude-text">85m Elevation</span>
+    </div>
+
+    <!-- Precision Rotating Chronometer Canvas Ring -->
+    <div class="radar-dial-housing">
+      <div class="radar-dial-halo"></div>
+      <canvas id="radar-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Bottom Floating Luxury Dock Controls -->
+  <div class="bottom-dock">
+    <!-- Day / Night Mode Switcher -->
+    <div class="time-toggle-wrap">
+      <button id="btn-time-day" class="time-btn active">
+        <i data-lucide="sun" style="width: 14px; height: 14px;"></i>
+        <span>Day</span>
+      </button>
+      <button id="btn-time-night" class="time-btn">
+        <i data-lucide="moon" style="width: 14px; height: 14px;"></i>
+        <span>Night</span>
+      </button>
+    </div>
+
+    <div class="dock-divider"></div>
+
+    <!-- Cursor Movement Look Toggle -->
+    <button id="btn-cursor-look" class="dock-btn active" data-tooltip="Interactive Cursor Rotation Effect">
+      <i data-lucide="mouse-pointer" style="width: 18px; height: 18px;"></i>
+    </button>
+
+    <!-- Auto Rotate (Enabled by Default) -->
+    <button id="btn-auto-rotate" class="dock-btn active" data-tooltip="Toggle Gentle Auto-Rotation">
+      <i data-lucide="rotate-cw" style="width: 18px; height: 18px;"></i>
+    </button>
+
+    <!-- Reset Camera -->
+    <button id="btn-reset-view" class="dock-btn" data-tooltip="Reset Camera Heading">
+      <i data-lucide="compass" style="width: 18px; height: 18px;"></i>
+    </button>
+
+    <!-- Fullscreen -->
+    <button id="btn-fullscreen" class="dock-btn" data-tooltip="Toggle Fullscreen Mode">
+      <i data-lucide="maximize2" style="width: 18px; height: 18px;"></i>
+    </button>
+  </div>
+
+  <!-- Unit Finder Slide-Over Drawer -->
+  <div id="unit-drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="unit-drawer-panel" class="drawer-panel">
+    <div class="drawer-header">
+      <div>
+        <span
+          style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Masterplan
+          Inventory</span>
+        <h2 class="font-serif">RERA Units & Layouts</h2>
+      </div>
+      <button id="unit-drawer-close" class="drawer-close-btn">
+        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Filter Tabs -->
+      <div class="filter-bar">
+        <button class="filter-chip active" data-filter="All">All Units</button>
+        <button class="filter-chip" data-filter="1 BHK">1 BHK Suites</button>
+        <button class="filter-chip" data-filter="2 BHK">2 BHK Grand</button>
+        <button class="filter-chip" data-filter="3 BHK">3 BHK Luxury</button>
+        <button class="filter-chip" data-filter="Penthouse">Sky Penthouses</button>
+      </div>
+
+      <!-- Unit Cards List -->
+      <div id="unit-list-container"></div>
+    </div>
+  </div>
+
+  <!-- VIP Booking & Lead Capture Modal -->
+  <div id="lead-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <span
+            style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Priority
+            Access</span>
+          <h2 class="font-serif">Book a Guided Site & Sample Flat Visit</h2>
+        </div>
+        <button id="lead-modal-close" class="drawer-close-btn">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="lead-form">
+          <div class="form-group">
+            <label class="form-label">Interested Configuration / Unit</label>
+            <select id="lead-unit-select" name="unitId" class="form-select"></select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="fullName" class="form-input" placeholder="e.g. Rahul Sharma" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-input" placeholder="rahul@example.com" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label class="form-label">Mobile Number *</label>
+              <input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current City</label>
+              <select name="city" class="form-select">
+                <option value="Mumbai / MMR">Mumbai / MMR</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
+                <option value="Thane">Thane</option>
+                <option value="Pune">Pune</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Delhi-NCR">Delhi-NCR</option>
+                <option value="NRI / Global">NRI / Overseas Investor</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Date for Site Visit</label>
+            <input type="date" name="viewingDate" class="form-input" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Special Requests / Preferences</label>
+            <textarea name="notes" rows="2" class="form-textarea"
+              placeholder="High-floor preference, Vastu compliance, home loan assistance..."></textarea>
+          </div>
+
+          <button type="submit" class="gold-btn"
+            style="width: 100%; justify-content: center; padding: 14px; font-size: 14px; margin-top: 10px;">
+            Confirm Site Visit & Receive Cost Sheet
+          </button>
+          <p style="font-size: 10px; color: var(--text-dim); text-align: center; margin-top: 8px;">
+            * MahaRERA registered project. By submitting, you agree to receive official project updates via WhatsApp /
+            Call.
+          </p>
+        </form>
+
+        <!-- Success State -->
+        <div id="lead-success-state" style="display: none; text-align: center; padding: 30px 10px;">
+          <div
+            style="width: 60px; height: 60px; border-radius: 50%; background: var(--gold-gradient); color: #07090e; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+            <i data-lucide="check" style="width: 32px; height: 32px;"></i>
+          </div>
+          <h3 style="font-size: 20px; color: #fff; margin-bottom: 8px;">Site Visit Request Registered</h3>
+          <p
+            style="font-size: 13px; color: var(--text-muted); max-width: 420px; margin: 0 auto 20px; line-height: 1.5;">
+            Thank you for your interest in Polycrayons Bay Horizon. Our project relationship manager will share the
+            digital brochure and contact you to coordinate your site visit.
+          </p>
+          <button id="lead-success-close" class="gold-btn" style="margin: 0 auto;">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floor Plan Overlay Modal -->
+  <div id="floorplan-modal" class="modal-overlay">
+    <div class="modal-container" style="width: 800px;">
+      <div class="modal-header">
+        <div>
+          <span
+            style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase;">MahaRERA
+            Layout</span>
+          <h2 id="floorplan-title" class="font-serif">Architectural Floor Plan</h2>
+          <p id="floorplan-subtitle" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;"></p>
+        </div>
+        <button id="floorplan-modal-close" class="drawer-close-btn">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div
+          style="background: #080a0f; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-bottom: 20px; text-align: center;">
+          <img id="floorplan-image" src="" alt="Floor Plan"
+            style="width: 100%; max-height: 420px; object-fit: cover;" />
+        </div>
+
+        <div id="floorplan-specs-container"
+          style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px;"></div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end;">
+          <button id="floorplan-download-btn" class="glass-btn">
+            <i data-lucide="download" style="width: 15px; height: 15px;"></i>
+            <span>Download PDF Brochure</span>
+          </button>
+          <button id="floorplan-book-btn" class="gold-btn">
+            <i data-lucide="phone" style="width: 15px; height: 15px;"></i>
+            <span>Schedule Site Visit</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Landmark & Hotspot Detail Modal -->
+  <div id="landmark-modal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <span id="landmark-category"
+            style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase;"></span>
+          <h2 id="landmark-title" class="font-serif"></h2>
+        </div>
+        <button id="landmark-modal-close" class="drawer-close-btn">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="landmark-image" src="" alt="Landmark"
+          style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 16px;" />
+        <div id="landmark-meta"
+          style="font-size: 12px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px;"></div>
+        <p id="landmark-details"
+          style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px;"></p>
+        <div id="landmark-highlights" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Amenities Showcase Modal -->
+  <div id="amenities-modal" class="modal-overlay">
+    <div class="modal-container" style="width: 860px;">
+      <div class="modal-header">
+        <div>
+          <span
+            style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase;">Masterplan
+            Amenities</span>
+          <h2 class="font-serif">Clubhouse & Lifestyle Experiences</h2>
+        </div>
+        <button id="amenities-modal-close" class="drawer-close-btn">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="amenities-grid"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live CRM & Leads Drawer (For Company Stakeholders Demo) -->
+  <div id="crm-drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="crm-drawer-panel" class="drawer-panel" style="width: 540px;">
+    <div class="drawer-header">
+      <div>
+        <span
+          style="font-size: 11px; color: var(--gold-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Sales
+          CRM Engine</span>
+        <h2 class="font-serif">Verified Inquiries & Leads</h2>
+      </div>
+      <button id="crm-drawer-close" class="drawer-close-btn">
+        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button id="crm-export-btn" class="gold-btn" style="flex: 1; justify-content: center; font-size: 12px;">
+          <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+          <span>Export to CSV</span>
+        </button>
+        <button id="crm-clear-btn" class="glass-btn" style="font-size: 12px;">
+          <span>Clear Leads</span>
+        </button>
+      </div>
+
+      <div id="crm-table-body"></div>
+    </div>
+  </div>
+
+  <!-- Application Script Entrypoint -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

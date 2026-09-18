@@ -1,0 +1,141 @@
+{
+  "leads": [
+    {
+      "id": "lead-1789735361592",
+      "fullName": "Ananya Deshmukh",
+      "email": "ananya.deshmukh@investor.in",
+      "phone": "+91 98199 87654",
+      "city": "Mumbai / MMR",
+      "unitId": "general",
+      "unitName": "General Masterplan Consultation",
+      "viewingDate": "2026-09-25",
+      "notes": "Interested in Sea-Facing 3 BHK with sunrise vista & 2 car parks.",
+      "status": "Pending Verification",
+      "createdAt": "2026-09-18T12:42:41.592Z"
+    },
+    {
+      "id": "lead-1726650000000",
+      "fullName": "Vikram Malhotra",
+      "email": "vikram.malhotra@zenithexec.in",
+      "phone": "+91 98201 54321",
+      "city": "Mumbai / MMR",
+      "unitId": "unit-2101",
+      "unitName": "Tower Pinnacle • Sky Villa 2101 (Penthouse ₹7.80 Cr)",
+      "viewingDate": "2026-09-22",
+      "notes": "Interested in Sky Duplex terrace plunge pool & 3 dedicated parking bays. High priority NRI consultation.",
+      "status": "Confirmed Site Visit",
+      "createdAt": "2026-09-18T10:30:00.000Z"
+    }
+  ],
+  "units": [
+    {
+      "id": "unit-1801",
+      "number": "Tower A • Suite 1801",
+      "type": "1 BHK",
+      "category": "1 BHK Luxury Suite",
+      "floor": 18,
+      "carpetArea": "520 sq.ft (48.3 sq.m) RERA",
+      "balconyArea": "65 sq.ft Balcony",
+      "priceINR": "₹1.15 Cr",
+      "priceLakhs": "₹115 Lakhs (All Inclusive*)",
+      "facing": "East Facing • Creek & Lake View",
+      "status": "Available",
+      "featured": false,
+      "specs": {
+        "bedrooms": "1 Master Bedroom",
+        "bathrooms": "2 Bathrooms",
+        "parking": "1 Covered Car Park",
+        "ceilingHeight": "10.5 ft High Ceiling"
+      },
+      "floorPlanUrl": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      "features": [
+        "Vastu Compliant Layout",
+        "Italian Vitrified Tiles",
+        "Modular German Kitchen",
+        "Smart Video Door Phone"
+      ]
+    },
+    {
+      "id": "unit-1902",
+      "number": "Tower A • Residence 1902",
+      "type": "2 BHK",
+      "category": "2 BHK Grand Waterfront",
+      "floor": 19,
+      "carpetArea": "865 sq.ft (80.3 sq.m) RERA",
+      "balconyArea": "120 sq.ft Sundeck",
+      "priceINR": "₹2.10 Cr",
+      "priceLakhs": "₹210 Lakhs (All Inclusive*)",
+      "facing": "East-West Cross Ventilation (Sea & Creek)",
+      "status": "Fast Selling",
+      "featured": true,
+      "specs": {
+        "bedrooms": "2 Master Bedrooms",
+        "bathrooms": "2 En-Suite Baths",
+        "parking": "1 Dedicated Podium Bay",
+        "ceilingHeight": "11.0 ft High Ceiling"
+      },
+      "floorPlanUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+      "features": [
+        "Corner Deck with Creek View",
+        "Walk-in Wardrobe Niche",
+        "Kohler Sanitary Fittings",
+        "Acoustic Soundproof Glass"
+      ]
+    },
+    {
+      "id": "unit-2004",
+      "number": "Tower B • Residence 2004",
+      "type": "3 BHK",
+      "category": "3 BHK Premium Sky Residence",
+      "floor": 20,
+      "carpetArea": "1,420 sq.ft (131.9 sq.m) RERA",
+      "balconyArea": "210 sq.ft Wrap Balcony",
+      "priceINR": "₹3.65 Cr",
+      "priceLakhs": "₹365 Lakhs (All Inclusive*)",
+      "facing": "Dual Aspect • Sea Horizon & Skyline",
+      "status": "Available",
+      "featured": true,
+      "specs": {
+        "bedrooms": "3 Bedrooms + Puja Room",
+        "bathrooms": "3.5 Bathrooms + Maid Toilet",
+        "parking": "2 Covered Reserved Bays",
+        "ceilingHeight": "11.5 ft High Ceiling"
+      },
+      "floorPlanUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "features": [
+        "Dedicated Puja Niche",
+        "Separate Servant's Room",
+        "Expansive Master Living Deck",
+        "Automated Home Lighting"
+      ]
+    },
+    {
+      "id": "unit-2101",
+      "number": "Tower Pinnacle • Sky Villa 2101",
+      "type": "Penthouse",
+      "category": "4 BHK Crown Sky Duplex & Penthouse",
+      "floor": 21,
+      "carpetArea": "2,950 sq.ft (274.0 sq.m) RERA",
+      "balconyArea": "650 sq.ft Private Sky Terrace",
+      "priceINR": "₹7.80 Cr",
+      "priceLakhs": "₹780 Lakhs (All Inclusive*)",
+      "facing": "360° Panoramic Skyline & Ocean Horizon",
+      "status": "Reserved",
+      "featured": true,
+      "specs": {
+        "bedrooms": "4 Grand En-Suites + Family Lounge",
+        "bathrooms": "5 Luxury Bathrooms + Powder Room",
+        "parking": "3 Dedicated Basement Bays",
+        "ceilingHeight": "13.0 ft Double Height Living"
+      },
+      "floorPlanUrl": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+      "features": [
+        "Private Plunge Pool on Terrace",
+        "Double Height Glass Atrium",
+        "Private Elevator Foyer",
+        "Jacuzzi & Steam En-Suite"
+      ]
+    }
+  ],
+  "analytics": []
+}
