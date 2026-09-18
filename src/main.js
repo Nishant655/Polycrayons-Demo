@@ -424,6 +424,18 @@ class App {
     document.addEventListener('mozfullscreenchange', updateFullscreenState);
     document.addEventListener('MSFullscreenChange', updateFullscreenState);
 
+    // Keyboard Shortcut: Press 'F' to Toggle Fullscreen
+    window.addEventListener('keydown', (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') {
+        return;
+      }
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        if (fullscreenBtn) fullscreenBtn.click();
+      }
+    });
+
     // Reset View Button
     const resetViewBtn = document.getElementById('btn-reset-view');
     if (resetViewBtn) {

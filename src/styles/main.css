@@ -400,6 +400,10 @@ body.tour-entered .bottom-dock {
   transition: var(--transition);
 }
 
+.dock-btn * {
+  pointer-events: none;
+}
+
 .dock-btn:hover {
   background: rgba(212, 175, 55, 0.15);
   border-color: var(--gold-primary);
