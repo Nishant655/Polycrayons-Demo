@@ -358,9 +358,8 @@ class App {
       });
     }
 
-    // Robust Cross-Browser Fullscreen Toggle & Immersive Mode
+    // Fullscreen Toggle
     const fullscreenBtn = document.getElementById('btn-fullscreen');
-    const fullscreenExitBtn = document.getElementById('btn-fullscreen-exit');
 
     const updateFullscreenState = () => {
       const isFs = !!(
@@ -370,12 +369,6 @@ class App {
         document.msFullscreenElement
       );
       this.isFullscreen = isFs;
-
-      if (isFs) {
-        document.body.classList.add('fullscreen-immersive');
-      } else {
-        document.body.classList.remove('fullscreen-immersive');
-      }
 
       if (fullscreenBtn) {
         if (isFs) {
@@ -387,54 +380,43 @@ class App {
           fullscreenBtn.setAttribute('data-tooltip', 'Toggle Fullscreen Mode');
           fullscreenBtn.innerHTML = '<i data-lucide="maximize-2" style="width: 18px; height: 18px;"></i>';
         }
-      }
-      this.renderIcons();
-    };
-
-    const toggleFs = async () => {
-      try {
-        const isFs = !!(
-          document.fullscreenElement ||
-          document.webkitFullscreenElement ||
-          document.mozFullScreenElement ||
-          document.msFullscreenElement
-        );
-
-        if (!isFs) {
-          const docEl = document.documentElement;
-          if (docEl.requestFullscreen) {
-            await docEl.requestFullscreen();
-          } else if (docEl.webkitRequestFullscreen) {
-            await docEl.webkitRequestFullscreen();
-          } else if (docEl.mozRequestFullScreen) {
-            await docEl.mozRequestFullScreen();
-          } else if (docEl.msRequestFullscreen) {
-            await docEl.msRequestFullscreen();
-          }
-        } else {
-          if (document.exitFullscreen) {
-            await document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) {
-            await document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            await document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) {
-            await document.msExitFullscreen();
-          }
-        }
-      } catch (err) {
-        console.warn('Fullscreen toggle error:', err);
-      } finally {
-        updateFullscreenState();
+        this.renderIcons();
       }
     };
 
     if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', toggleFs);
-    }
+      fullscreenBtn.addEventListener('click', () => {
+        const doc = document;
+        const docEl = document.documentElement;
+        const isFs = !!(
+          doc.fullscreenElement ||
+          doc.webkitFullscreenElement ||
+          doc.mozFullScreenElement ||
+          doc.msFullscreenElement
+        );
 
-    if (fullscreenExitBtn) {
-      fullscreenExitBtn.addEventListener('click', toggleFs);
+        if (!isFs) {
+          if (docEl.requestFullscreen) {
+            docEl.requestFullscreen().catch(err => console.warn('Fullscreen request failed:', err));
+          } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+          } else if (docEl.mozRequestFullScreen) {
+            docEl.mozRequestFullScreen();
+          } else if (docEl.msRequestFullscreen) {
+            docEl.msRequestFullscreen();
+          }
+        } else {
+          if (doc.exitFullscreen) {
+            doc.exitFullscreen().catch(err => console.warn('Exit fullscreen failed:', err));
+          } else if (doc.webkitExitFullscreen) {
+            doc.webkitExitFullscreen();
+          } else if (doc.mozCancelFullScreen) {
+            doc.mozCancelFullScreen();
+          } else if (doc.msExitFullscreen) {
+            doc.msExitFullscreen();
+          }
+        }
+      });
     }
 
     document.addEventListener('fullscreenchange', updateFullscreenState);
