@@ -1,8 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { leadsRouter } from './routes/leads.js';
 import { unitsRouter } from './routes/units.js';
 import { analyticsRouter } from './routes/analytics.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -27,6 +32,14 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Serve static frontend build in production
+const distPath = path.join(__dirname, '..', 'dist');
+app.use(express.static(distPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Polycrayons Bay Horizon Backend API running on http://localhost:${PORT}`);
   console.log(`📡 Endpoints:`);
@@ -34,3 +47,4 @@ app.listen(PORT, () => {
   console.log(`   - GET/PATCH http://localhost:${PORT}/api/units`);
   console.log(`   - POST/GET  http://localhost:${PORT}/api/analytics`);
 });
+
