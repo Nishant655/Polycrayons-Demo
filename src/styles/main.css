@@ -29,14 +29,22 @@
   -webkit-font-smoothing: antialiased;
 }
 
+html,
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow: hidden;
   user-select: none;
-  width: 100vw;
-  height: 100vh;
+  -webkit-user-select: none;
 }
 
 h1,
@@ -49,18 +57,18 @@ h3,
 
 /* 3D Panorama Canvas Container with Cinematic Fade-In */
 #viewport-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  background-color: #000;
+  background-color: var(--bg-dark);
   cursor: grab;
   opacity: 0;
   filter: blur(14px);
-  transform: scale(1.1);
-  transition: opacity 2.0s cubic-bezier(0.22, 1, 0.36, 1), filter 2.0s cubic-bezier(0.22, 1, 0.36, 1), transform 2.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(1.02);
+  transition: opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1), filter 1.6s cubic-bezier(0.22, 1, 0.36, 1), transform 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
 }
 
 #viewport-container.loaded {
@@ -71,6 +79,15 @@ h3,
 
 #viewport-container:active {
   cursor: grabbing;
+}
+
+#viewport-container canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 #three-canvas {
@@ -2730,7 +2747,20 @@ body.tour-entered .bottom-dock {
    -------------------------------------------------------------------------- */
 .style-cinematic-view {
   position: relative;
-  min-height: 160px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 16px;
+  max-width: 580px;
+}
+
+.film-emblem-wrapper {
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.7));
+  animation: float-sprinkle 4s ease-in-out infinite alternate;
 }
 
 .film-giant-watermark {
@@ -2738,10 +2768,10 @@ body.tour-entered .bottom-dock {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 72px;
+  font-size: clamp(38px, 12vw, 76px);
   font-weight: 800;
-  letter-spacing: 0.25em;
-  color: rgba(212, 175, 55, 0.06);
+  letter-spacing: 0.22em;
+  color: rgba(212, 175, 55, 0.05);
   white-space: nowrap;
   pointer-events: none;
   z-index: 1;
@@ -2750,19 +2780,41 @@ body.tour-entered .bottom-dock {
 .film-foreground {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .film-year-tag {
   display: inline-block;
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  font-weight: 700;
-  color: var(--gold-primary);
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  font-size: 8.5px;
+  letter-spacing: 0.26em;
+  font-weight: 800;
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.45);
   border-radius: 9999px;
-  padding: 4px 14px;
-  margin-bottom: 14px;
-  background: rgba(212, 175, 55, 0.08);
+  padding: 4px 16px;
+  margin-bottom: 12px;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.2);
+}
+
+.film-title {
+  font-size: clamp(20px, 6vw, 32px) !important;
+  letter-spacing: 0.18em !important;
+  line-height: 1.25 !important;
+  margin-bottom: 6px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #fff7d6 30%, #ffd768 70%, #dfba73 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 14px rgba(212, 175, 55, 0.35));
+}
+
+.film-sub {
+  font-size: clamp(9px, 2.8vw, 11.5px) !important;
+  letter-spacing: 0.2em !important;
+  color: var(--text-muted) !important;
+  font-weight: 600 !important;
 }
 
 /* --------------------------------------------------------------------------

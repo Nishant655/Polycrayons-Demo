@@ -92,8 +92,11 @@ class App {
     this.bindControls();
 
     // 7. Track loading progress for ultra-luxury splash screen
-    const savedStyle = localStorage.getItem('poly_loader_style') || 'style-gates';
-    this.setLoaderStyle(savedStyle, true);
+    // Mobile screens (<= 768px): Use 4th Design (Film Intro: style-cinematic)
+    // Desktop screens (> 768px): Use 2nd Design (3D Grand Gates: style-gates)
+    const isMobile = window.innerWidth <= 768;
+    const initialStyle = isMobile ? 'style-cinematic' : (localStorage.getItem('poly_loader_style') || 'style-gates');
+    this.setLoaderStyle(initialStyle, true);
 
     const progressBar = document.getElementById('loader-progress-bar');
     const percentageEl = document.getElementById('loader-percentage');
@@ -107,19 +110,23 @@ class App {
       if (statusTextEl && text) statusTextEl.textContent = text;
     };
 
-    updateProgress(35, 'CALIBRATING 8K GIGAPIXEL MATRIX...');
-    await new Promise(r => setTimeout(r, 120));
-
-    updateProgress(75, 'GENERATING ULTRA-HD 360° MASTERPLAN...');
-
-    // Load Initial Scene
-    await this.loadScene(0);
-
-    updateProgress(100, 'PORTAL READY • GATES OPENING...');
-    await new Promise(r => setTimeout(r, 200));
-
-    // 8. Cinematic Reveal: Open Gates & Enter 360 Viewport
-    this.hideLoader();
+    if (isMobile) {
+      updateProgress(35, 'INITIALIZING 360° TOUR MATRIX...');
+      await new Promise(r => setTimeout(r, 120));
+      updateProgress(70, 'CALIBRATING ULTRA-HD MASTERPLAN...');
+      await this.loadScene(0);
+      updateProgress(100, 'WELCOME TO POLYCRAYONS BAY HORIZON');
+      await new Promise(r => setTimeout(r, 400));
+      this.hideLoader();
+    } else {
+      updateProgress(35, 'CALIBRATING 8K GIGAPIXEL MATRIX...');
+      await new Promise(r => setTimeout(r, 120));
+      updateProgress(75, 'GENERATING ULTRA-HD 360° MASTERPLAN...');
+      await this.loadScene(0);
+      updateProgress(100, 'PORTAL READY • GATES OPENING...');
+      await new Promise(r => setTimeout(r, 200));
+      this.hideLoader();
+    }
   }
 
   setLoaderStyle(styleClass, isInitial = false) {
@@ -247,9 +254,10 @@ class App {
     }
 
     loader.classList.add('fade-out');
+    document.body.classList.add('tour-entered');
     setTimeout(() => {
       loader.style.display = 'none';
-    }, 1200);
+    }, 900);
   }
 
   renderIcons() {
