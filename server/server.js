@@ -13,13 +13,22 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+const allowedOrigins = [
+  'https://polycrayons-demo.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:3001',
+  ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : [])
+];
+
 app.use(cors({
-  origin: [
-    'https://polycrayons-demo.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:3000',
-    'http://localhost:3001'
-  ],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, server-to-server)
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    return callback(null, true); // Permissive CORS for demo
+  },
   credentials: true
 }));
 app.use(express.json());
