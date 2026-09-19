@@ -53,7 +53,8 @@ app.get('/api/health', (req, res) => {
 const distPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(distPath));
 
-app.get('*', (req, res) => {
+// SPA Catch-all Fallback (Express 5 compatible)
+app.use((req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
