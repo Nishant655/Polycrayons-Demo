@@ -3017,6 +3017,33 @@ body.tour-entered .bottom-dock {
     width: 5px;
   }
 
+  .gate-door-wing {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+  }
+
+  /* Mobile 3D Gate Opening & Zooming Animation */
+  #loader-overlay.gates-opening .gate-door-wing.door-left {
+    transform: perspective(650px) rotateY(-82deg) !important;
+    opacity: 0.45 !important;
+  }
+
+  #loader-overlay.gates-opening .gate-door-wing.door-right {
+    transform: perspective(650px) rotateY(82deg) !important;
+    opacity: 0.45 !important;
+  }
+
+  #loader-overlay.gates-zooming .gate-portal-frame {
+    transform: scale(5.5) !important;
+  }
+
+  #loader-overlay.gates-zooming .gate-welcome-banner {
+    transform: translate3d(-50%, -50%, 0) scale(1.3) !important;
+    opacity: 0 !important;
+  }
+
   .gate-flank-column {
     display: none;
   }
@@ -3075,5 +3102,16 @@ body.tour-entered .bottom-dock {
   .door-handle {
     height: 95px;
     width: 7px;
+  }
+
+  /* Extra-Small Mobile 3D Gate Swing */
+  #loader-overlay.gates-opening .gate-door-wing.door-left {
+    transform: perspective(500px) rotateY(-80deg) !important;
+    opacity: 0.45 !important;
+  }
+
+  #loader-overlay.gates-opening .gate-door-wing.door-right {
+    transform: perspective(500px) rotateY(80deg) !important;
+    opacity: 0.45 !important;
   }
 }
