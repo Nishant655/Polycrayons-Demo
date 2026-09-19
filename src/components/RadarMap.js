@@ -14,13 +14,12 @@ export class RadarMap {
   }
 
   init() {
-    // High-DPI Retina Rendering
-    const dpr = window.devicePixelRatio || 2;
-    const displaySize = 150;
-    this.canvas.width = displaySize * dpr;
-    this.canvas.height = displaySize * dpr;
-    this.canvas.style.width = `${displaySize}px`;
-    this.canvas.style.height = `${displaySize}px`;
+    this.updateDimensions();
+
+    // Resize listener for responsive layout shifts
+    window.addEventListener('resize', () => {
+      this.updateDimensions();
+    });
 
     // Update camera orientation on rotation
     this.viewer.on('rotate', (e) => {
@@ -31,6 +30,17 @@ export class RadarMap {
     // Smooth 60fps render loop
     this.animate = this.animate.bind(this);
     requestAnimationFrame(this.animate);
+  }
+
+  updateDimensions() {
+    const dpr = Math.min(window.devicePixelRatio || 2, 2.5);
+    const rect = this.canvas.getBoundingClientRect();
+    const displaySize = Math.round(rect.width) || (window.innerWidth <= 768 ? 85 : 150);
+    
+    if (this.canvas.width !== displaySize * dpr || this.canvas.height !== displaySize * dpr) {
+      this.canvas.width = displaySize * dpr;
+      this.canvas.height = displaySize * dpr;
+    }
   }
 
   setHotspots(hotspots) {
@@ -56,10 +66,12 @@ export class RadarMap {
     const cx = w / 2;
     const cy = h / 2;
     
+    const scale = Math.max(w / 300, 0.4);
+    
     // Outer dial bezel and inner radar viewport radii
-    const outerRadius = (w / 2) - 6;
-    const bezelInnerRadius = outerRadius - 22;
-    const radarRadius = bezelInnerRadius - 2;
+    const outerRadius = (w / 2) - (6 * scale);
+    const bezelInnerRadius = outerRadius - (22 * scale);
+    const radarRadius = bezelInnerRadius - (2 * scale);
 
     ctx.clearRect(0, 0, w, h);
 
@@ -78,14 +90,14 @@ export class RadarMap {
 
     // Outer Champagne Gold Rim
     ctx.strokeStyle = 'rgba(212, 175, 55, 0.65)';
-    ctx.lineWidth = 1.8;
+    ctx.lineWidth = Math.max(1.8 * scale, 1);
     ctx.beginPath();
     ctx.arc(cx, cy, outerRadius, 0, Math.PI * 2);
     ctx.stroke();
 
     // Inner Bezel Dividing Rim
     ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
-    ctx.lineWidth = 1;
+    ctx.lineWidth = Math.max(1 * scale, 0.8);
     ctx.beginPath();
     ctx.arc(cx, cy, bezelInnerRadius, 0, Math.PI * 2);
     ctx.stroke();
@@ -103,15 +115,15 @@ export class RadarMap {
       }
       const rad = (i * Math.PI) / 180;
       const isMajor = i % 30 === 0;
-      const tickLen = isMajor ? 5 : 3;
+      const tickLen = (isMajor ? 5 : 3) * scale;
 
-      const x1 = cx + Math.cos(rad) * (outerRadius - 2);
-      const y1 = cy + Math.sin(rad) * (outerRadius - 2);
-      const x2 = cx + Math.cos(rad) * (outerRadius - 2 - tickLen);
-      const y2 = cy + Math.sin(rad) * (outerRadius - 2 - tickLen);
+      const x1 = cx + Math.cos(rad) * (outerRadius - (2 * scale));
+      const y1 = cy + Math.sin(rad) * (outerRadius - (2 * scale));
+      const x2 = cx + Math.cos(rad) * (outerRadius - (2 * scale) - tickLen);
+      const y2 = cy + Math.sin(rad) * (outerRadius - (2 * scale) - tickLen);
 
       ctx.strokeStyle = isMajor ? 'rgba(212, 175, 55, 0.6)' : 'rgba(255, 255, 255, 0.2)';
-      ctx.lineWidth = isMajor ? 1.2 : 0.8;
+      ctx.lineWidth = Math.max((isMajor ? 1.2 : 0.8) * scale, 0.6);
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
@@ -129,25 +141,27 @@ export class RadarMap {
     // Red North Arrowhead Indicator (pointing up to True North)
     ctx.fillStyle = '#ef4444';
     ctx.shadowColor = 'rgba(239, 68, 68, 0.9)';
-    ctx.shadowBlur = 6;
+    ctx.shadowBlur = 6 * scale;
     ctx.beginPath();
-    ctx.moveTo(cx, cy - outerRadius + 2);
-    ctx.lineTo(cx - 4.5, cy - outerRadius + 7);
-    ctx.lineTo(cx + 4.5, cy - outerRadius + 7);
+    ctx.moveTo(cx, cy - outerRadius + (2 * scale));
+    ctx.lineTo(cx - (4.5 * scale), cy - outerRadius + (7 * scale));
+    ctx.lineTo(cx + (4.5 * scale), cy - outerRadius + (7 * scale));
     ctx.closePath();
     ctx.fill();
     ctx.shadowBlur = 0;
 
     // Bold Ruby Red 'N' (Placed cleanly below mark line with zero collision)
-    ctx.font = '800 15px "Plus Jakarta Sans", sans-serif';
+    const nFontSize = Math.max(Math.round(15 * scale), 9);
+    ctx.font = `800 ${nFontSize}px "Plus Jakarta Sans", sans-serif`;
     ctx.fillStyle = '#ff4d4d';
     ctx.shadowColor = 'rgba(239, 68, 68, 0.85)';
-    ctx.shadowBlur = 6;
-    ctx.fillText('N', cx, cy - cardinalDist + 2);
+    ctx.shadowBlur = 6 * scale;
+    ctx.fillText('N', cx, cy - cardinalDist + (2 * scale));
     ctx.shadowBlur = 0;
 
-    // --- EAST ('E') ---
-    ctx.font = '700 12px "Plus Jakarta Sans", sans-serif';
+    // --- EAST / SOUTH / WEST ---
+    const cardFontSize = Math.max(Math.round(12 * scale), 7.5);
+    ctx.font = `700 ${cardFontSize}px "Plus Jakarta Sans", sans-serif`;
     ctx.fillStyle = '#f1f5f9';
     ctx.fillText('E', cx + cardinalDist, cy);
 
@@ -169,14 +183,12 @@ export class RadarMap {
     ctx.arc(cx, cy, radarRadius, 0, Math.PI * 2);
     ctx.fill();
 
-    // Subtle Inner Concentric Distance Ring
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.15)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([2, 4]);
+    // Subtle Concentric Radar Rings
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.12)';
+    ctx.lineWidth = Math.max(0.8 * scale, 0.5);
     ctx.beginPath();
     ctx.arc(cx, cy, radarRadius * 0.55, 0, Math.PI * 2);
     ctx.stroke();
-    ctx.setLineDash([]);
 
     // ==========================================
     // 4. DYNAMIC RADAR SWEEP BEAM (Inner zone only)
@@ -195,7 +207,7 @@ export class RadarMap {
 
     // Leading sweep beam line
     ctx.strokeStyle = 'rgba(243, 229, 171, 0.45)';
-    ctx.lineWidth = 1.2;
+    ctx.lineWidth = Math.max(1.2 * scale, 0.8);
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(cx + Math.cos(sweepStart) * radarRadius, cy + Math.sin(sweepStart) * radarRadius);
@@ -225,9 +237,9 @@ export class RadarMap {
 
     // FOV Ray Boundary Lines
     ctx.strokeStyle = '#f3e5ab';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = Math.max(1.5 * scale, 1);
     ctx.shadowColor = 'rgba(212, 175, 55, 0.7)';
-    ctx.shadowBlur = 5;
+    ctx.shadowBlur = 5 * scale;
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(cx + Math.cos(startAngle) * radarRadius, cy + Math.sin(startAngle) * radarRadius);
@@ -238,11 +250,11 @@ export class RadarMap {
 
     // Center Heading Pointer Line
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.65)';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([2, 3]);
+    ctx.lineWidth = Math.max(1 * scale, 0.7);
+    ctx.setLineDash([2 * scale, 3 * scale]);
     ctx.beginPath();
     ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + Math.cos(headingRad) * (radarRadius - 4), cy + Math.sin(headingRad) * (radarRadius - 4));
+    ctx.lineTo(cx + Math.cos(headingRad) * (radarRadius - (4 * scale)), cy + Math.sin(headingRad) * (radarRadius - (4 * scale)));
     ctx.stroke();
     ctx.setLineDash([]);
 
@@ -262,17 +274,17 @@ export class RadarMap {
 
       // Ripple halo
       ctx.strokeStyle = isPinged ? 'rgba(243, 229, 171, 0.85)' : 'rgba(212, 175, 55, 0.3)';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = Math.max(1 * scale, 0.7);
       ctx.beginPath();
-      ctx.arc(hx, hy, isPinged ? 5.5 : 3.5, 0, Math.PI * 2);
+      ctx.arc(hx, hy, (isPinged ? 5.5 : 3.5) * scale, 0, Math.PI * 2);
       ctx.stroke();
 
       // Gold Core Pip
       ctx.fillStyle = isPinged ? '#ffffff' : '#dfba73';
       ctx.shadowColor = '#d4af37';
-      ctx.shadowBlur = isPinged ? 6 : 2;
+      ctx.shadowBlur = (isPinged ? 6 : 2) * scale;
       ctx.beginPath();
-      ctx.arc(hx, hy, 2, 0, Math.PI * 2);
+      ctx.arc(hx, hy, 2 * scale, 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
     });
@@ -282,18 +294,18 @@ export class RadarMap {
     // ==========================================
     ctx.fillStyle = '#0a0d14';
     ctx.beginPath();
-    ctx.arc(cx, cy, 5.5, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 5.5 * scale, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.strokeStyle = '#d4af37';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = Math.max(1.5 * scale, 1);
     ctx.beginPath();
-    ctx.arc(cx, cy, 5.5, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 5.5 * scale, 0, Math.PI * 2);
     ctx.stroke();
 
     ctx.fillStyle = '#ffdf7a';
     ctx.beginPath();
-    ctx.arc(cx, cy, 2, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 2 * scale, 0, Math.PI * 2);
     ctx.fill();
 
     // ==========================================

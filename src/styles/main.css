@@ -1202,43 +1202,59 @@ body.tour-entered .bottom-dock {
     display: none;
   }
 
-  /* Right Radar Instrument on Mobile - Compact Chronometer Dial */
+  /* Right Radar Instrument on Mobile - Perfectly Scaled & Positioned */
   #radar-hud-card,
   .radar-floating-instrument {
     position: absolute !important;
-    top: 62px !important;
+    top: 64px !important;
     right: 8px !important;
     left: auto !important;
     transform: none !important;
     width: auto !important;
     z-index: 50;
-    gap: 4px;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    pointer-events: auto;
   }
 
   .radar-top-capsule {
-    padding: 2px 6px;
+    padding: 2.5px 7px;
     gap: 3px;
-    font-size: 8.5px;
+    font-size: 8px;
+    border-radius: 9999px;
+    background: rgba(8, 12, 20, 0.92);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    backdrop-filter: blur(12px);
   }
 
   .radar-live-heading {
-    font-size: 8.5px;
+    font-size: 8px;
+    font-weight: 700;
   }
 
   .radar-altitude-text {
-    font-size: 8px;
+    font-size: 7.5px;
   }
 
   .radar-dial-housing {
-    width: 78px;
-    height: 78px;
-    border-width: 1.2px;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    border: 1.2px solid rgba(212, 175, 55, 0.45);
+    background: radial-gradient(circle, #0e1422 0%, #060910 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 12px rgba(212, 175, 55, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
 
   #radar-canvas {
-    width: 78px;
-    height: 78px;
+    width: 84px;
+    height: 84px;
+    display: block;
   }
 
   /* Bottom Dock Controls on Mobile */
@@ -1246,6 +1262,11 @@ body.tour-entered .bottom-dock {
     bottom: 14px;
     padding: 4px 8px;
     gap: 6px;
+  }
+
+  /* Remove Cursor Look Toggle Button on Mobile / Touch Screens */
+  #btn-cursor-look {
+    display: none !important;
   }
 
   .time-toggle-wrap {
@@ -2885,94 +2906,115 @@ body.tour-entered .bottom-dock {
   }
 
   .gate-portal-frame {
-    width: 380px;
-    height: 440px;
-    max-width: 92vw;
-    max-height: 60vh;
+    width: 320px;
+    height: 380px;
+    max-width: 90vw;
+    max-height: 54vh;
+    perspective: 900px;
   }
 
   .portal-arch-crown {
-    width: 240px;
-    top: -22px;
+    width: 200px;
+    top: -18px;
   }
 
   .arch-frieze-title {
-    font-size: 7px;
-    letter-spacing: 0.16em;
+    font-size: 6.5px;
+    letter-spacing: 0.14em;
   }
 
   .gate-welcome-banner {
-    width: 92%;
-    max-width: 330px;
-    padding: 18px 20px;
+    width: 88%;
+    max-width: 280px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .welcome-crown-star {
+    font-size: 9px;
+    margin-bottom: 3px;
+  }
+
+  .welcome-top-tag span {
+    font-size: 7px;
+    letter-spacing: 0.12em;
   }
 
   .welcome-main-title {
-    font-size: 18px;
+    font-size: 15px;
+    line-height: 1.25;
+    margin-bottom: 3px;
   }
 
   .welcome-sub-title {
-    font-size: 9px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .welcome-status-pill {
+    font-size: 7px;
+    padding: 3px 8px;
   }
 
   .gate-top-header {
-    margin-bottom: 12px;
-    padding: 6px 18px;
+    margin-bottom: 8px;
+    padding: 4px 14px;
   }
 
   .gate-grand-title {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .gate-grand-sub {
-    font-size: 8.5px;
+    font-size: 7.5px;
   }
 
   .grand-crest-medallion {
-    width: 62px;
-    height: 62px;
+    width: 52px;
+    height: 52px;
   }
 
   .medallion-title {
-    font-size: 8px;
+    font-size: 7.5px;
     margin-bottom: 2px;
   }
 
   .medallion-sub {
-    font-size: 6px;
-    letter-spacing: 0.16em;
+    font-size: 5.5px;
+    letter-spacing: 0.14em;
   }
 
   .door-panel-header-tag {
-    font-size: 6px;
-    padding: 1px 6px;
+    font-size: 5.5px;
+    padding: 1px 5px;
   }
 
   .door-bottom-plaque {
-    font-size: 5.5px;
-    padding: 1px 6px;
-    letter-spacing: 0.12em;
+    font-size: 5px;
+    padding: 1px 5px;
+    letter-spacing: 0.1em;
   }
 
   .door-panel-top {
-    height: 60px;
+    height: 48px;
   }
 
   .door-panel-bottom {
-    height: 64px;
+    height: 52px;
   }
 
   .fluted-columns-ribs {
-    height: 32px;
+    height: 26px;
   }
 
   .door-handle {
-    height: 150px;
-    width: 10px;
+    height: 110px;
+    width: 8px;
   }
 
   .handle-bar {
-    width: 6px;
+    width: 5px;
   }
 
   .gate-flank-column {
@@ -2980,6 +3022,58 @@ body.tour-entered .bottom-dock {
   }
 
   .gate-foyer-floor {
-    height: 110px;
+    height: 80px;
+  }
+}
+
+/* Extra-Small Mobile Devices (<= 480px) */
+@media (max-width: 480px) {
+  .gate-top-header {
+    margin-bottom: 6px;
+    padding: 3px 10px;
+  }
+
+  .gate-grand-title {
+    font-size: 11.5px;
+  }
+
+  .gate-grand-sub {
+    font-size: 7px;
+  }
+
+  .gate-portal-frame {
+    width: 290px;
+    height: 340px;
+    max-width: 88vw;
+    max-height: 50vh;
+  }
+
+  .portal-arch-crown {
+    width: 175px;
+    top: -15px;
+  }
+
+  .gate-welcome-banner {
+    width: 86%;
+    max-width: 250px;
+    padding: 12px 14px;
+  }
+
+  .welcome-main-title {
+    font-size: 13.5px;
+  }
+
+  .welcome-sub-title {
+    font-size: 7.5px;
+  }
+
+  .grand-crest-medallion {
+    width: 46px;
+    height: 46px;
+  }
+
+  .door-handle {
+    height: 95px;
+    width: 7px;
   }
 }
