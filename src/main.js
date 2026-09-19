@@ -93,7 +93,7 @@ class App {
 
     // 7. Track loading progress for ultra-luxury splash screen
     const savedStyle = localStorage.getItem('poly_loader_style') || 'style-gates';
-    this.setLoaderStyle(savedStyle);
+    this.setLoaderStyle(savedStyle, true);
 
     const progressBar = document.getElementById('loader-progress-bar');
     const percentageEl = document.getElementById('loader-percentage');
@@ -122,7 +122,7 @@ class App {
     this.hideLoader();
   }
 
-  setLoaderStyle(styleClass) {
+  setLoaderStyle(styleClass, isInitial = false) {
     const loader = document.getElementById('loader-overlay');
     if (!loader) return;
 
@@ -147,8 +147,8 @@ class App {
 
     localStorage.setItem('poly_loader_style', styleClass);
 
-    // If switching to Luxury Gates while previewing, run the automatic entrance sequence
-    if (styleClass === 'style-gates' && loader.style.display !== 'none' && !loader.classList.contains('fade-out')) {
+    // Only run preview auto-timer if NOT during initial startup (initial startup waits for loadScene(0))
+    if (!isInitial && styleClass === 'style-gates' && loader.style.display !== 'none' && !loader.classList.contains('fade-out')) {
       this._gateAutoTimer = setTimeout(() => {
         this.openGatesAndEnter();
       }, 250);

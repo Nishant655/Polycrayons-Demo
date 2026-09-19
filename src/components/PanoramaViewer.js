@@ -73,10 +73,13 @@ export class PanoramaViewer {
     // Invert geometry so faces point inward
     geometry.scale(-1, 1, 1);
 
+    // 3. Create Fallback Gradient Texture for Instant Luxury Backing
+    const placeholderTex = this.createFallbackTexture();
+
     this.shaderMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        uDayTexture: { value: null },
-        uNightTexture: { value: null },
+        uDayTexture: { value: placeholderTex },
+        uNightTexture: { value: placeholderTex },
         uBlend: { value: 0.0 }
       },
       vertexShader: `
@@ -110,6 +113,24 @@ export class PanoramaViewer {
     // 5. Start Animation Loop
     this.animate = this.animate.bind(this);
     requestAnimationFrame(this.animate);
+  }
+
+  createFallbackTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    const grad = ctx.createLinearGradient(0, 0, 0, 256);
+    grad.addColorStop(0, '#0b1329');
+    grad.addColorStop(0.45, '#1e293b');
+    grad.addColorStop(0.55, '#c5a86a');
+    grad.addColorStop(0.7, '#0f172a');
+    grad.addColorStop(1, '#050811');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 512, 256);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
   }
 
   loadTexture(url) {
@@ -159,17 +180,38 @@ export class PanoramaViewer {
       this.fov = sceneConfig.initialFov;
     }
 
-    // Load both Day and Night textures concurrently for instant transitions
-    const [dayTex, nightTex] = await Promise.all([
-      this.loadTexture(sceneConfig.dayImage),
-      this.loadTexture(sceneConfig.nightImage || sceneConfig.dayImage)
-    ]);
+    const primaryUrl = this.timeMode === 'night' ? (sceneConfig.nightImage || sceneConfig.dayImage) : sceneConfig.dayImage;
+    const secondaryUrl = this.timeMode === 'night' ? sceneConfig.dayImage : (sceneConfig.nightImage || sceneConfig.dayImage);
 
-    this.shaderMaterial.uniforms.uDayTexture.value = dayTex;
-    this.shaderMaterial.uniforms.uNightTexture.value = nightTex;
+    // 1. Fast Load: Load primary active texture first so scene displays immediately
+    const primaryTex = await this.loadTexture(primaryUrl);
+
+    if (this.timeMode === 'night') {
+      this.shaderMaterial.uniforms.uNightTexture.value = primaryTex;
+      if (!this.shaderMaterial.uniforms.uDayTexture.value) {
+        this.shaderMaterial.uniforms.uDayTexture.value = primaryTex;
+      }
+    } else {
+      this.shaderMaterial.uniforms.uDayTexture.value = primaryTex;
+      if (!this.shaderMaterial.uniforms.uNightTexture.value) {
+        this.shaderMaterial.uniforms.uNightTexture.value = primaryTex;
+      }
+    }
     this.shaderMaterial.uniforms.uBlend.value = this.blendValue;
 
+    // Signal scene is ready to display
     this.emit('ready', sceneConfig);
+
+    // 2. Preload secondary texture in background without blocking
+    if (secondaryUrl && secondaryUrl !== primaryUrl) {
+      this.loadTexture(secondaryUrl).then(secTex => {
+        if (this.timeMode === 'night') {
+          this.shaderMaterial.uniforms.uDayTexture.value = secTex;
+        } else {
+          this.shaderMaterial.uniforms.uNightTexture.value = secTex;
+        }
+      }).catch(() => {});
+    }
   }
 
   setTimeMode(mode, animate = true) {
